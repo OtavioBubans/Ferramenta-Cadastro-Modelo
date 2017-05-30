@@ -29,7 +29,7 @@ namespace FerramentaCadastroModelo.Controllers
             var aplicativo = new ModeloAplicativo();
             Modelo dificuldade = new Modelo()
             {
-                Id = model.Id.HasValue ? model.Id.Value : 0,
+                IDModelo = model.IDModelo.HasValue ? model.IDModelo.Value : 0,
                 Nome = model.Nome,
                 Sigla = model.Sigla,
                 Descricao = model.Descricao

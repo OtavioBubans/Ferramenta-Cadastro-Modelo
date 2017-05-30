@@ -9,7 +9,7 @@ namespace FerramentaCadastroModelo.Models
     public class ModeloModel
     {
         [Key]
-        public int? IDModel { get; set;}
+        public int? IDModelo { get; set;}
 
         [Required]
         public string Sigla { get; set; }

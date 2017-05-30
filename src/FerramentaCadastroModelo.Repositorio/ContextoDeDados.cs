@@ -17,8 +17,16 @@ namespace FerramentaCadastroModelo.Repositorio
         {
         }
 
+        public DbSet<AreaProcesso> AreaProcesso { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<MetaEspecifica> MetaEspecifica { get; set; }
         public DbSet<Modelo> Modelo { get; set; }
-        
+        public DbSet<NivelMaturidade> NivelMaturidade { get; set; }
+        public DbSet<PraticaEspecifica> PraticaEspecifica { get; set; }
+        public DbSet<ProdutoTrabalho> ProdutoTrabalho { get; set; }
+
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

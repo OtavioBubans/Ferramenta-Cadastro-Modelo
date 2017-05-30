@@ -25,14 +25,17 @@ namespace FerramentaCadastroModelo.Dominio
 
 
         public int IDModelo { get; set; }
+
         [ForeignKey("IDModelo")]
         public virtual Modelo Modelo { get; set; }
 
         public int IDNivelMaturidade { get; set; }
+
         [ForeignKey("IDNivelMaturidade")]
         public virtual NivelMaturidade NivelMaturidade { get; set; }
 
         public int IDCategoria { get; set; }
+
         [ForeignKey("IDCategoria")]
         public virtual Categoria Categoria { get; set; }
 

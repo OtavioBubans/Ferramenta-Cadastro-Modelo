@@ -52,9 +52,9 @@
   <ItemGroup>
     <Compile Include="BaseRepositorioEntity.cs" />
     <Compile Include="ContextoDeDados.cs" />
-    <Compile Include="Migrations\201705232328523_Initial.cs" />
-    <Compile Include="Migrations\201705232328523_Initial.Designer.cs">
-      <DependentUpon>201705232328523_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201705301923552_Initial.cs" />
+    <Compile Include="Migrations\201705301923552_Initial.Designer.cs">
+      <DependentUpon>201705301923552_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRepositorio.cs" />
@@ -71,8 +71,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705232328523_Initial.resx">
-      <DependentUpon>201705232328523_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705301923552_Initial.resx">
+      <DependentUpon>201705301923552_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
