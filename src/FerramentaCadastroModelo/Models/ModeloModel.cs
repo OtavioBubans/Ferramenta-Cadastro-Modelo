@@ -8,8 +8,8 @@ namespace FerramentaCadastroModelo.Models
 {
     public class ModeloModel
     {
-        
-        public int? Id { get; set;}
+        [Key]
+        public int? IDModel { get; set;}
 
         [Required]
         public string Sigla { get; set; }
@@ -19,6 +19,9 @@ namespace FerramentaCadastroModelo.Models
 
         [Required]
         public string Descricao { get; set;}
+
+        [Required]
+        public virtual ICollection<AreaProcessoModel> AreaProcessoModel { get; set; }
 
 
         public ModeloModel()
