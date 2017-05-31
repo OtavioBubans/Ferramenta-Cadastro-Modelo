@@ -15,6 +15,7 @@ namespace FerramentaCadastroModelo.Repositorio
             using (var contexto = new ContextoDeDados())
             {
                 contexto.Modelo.Add(modelo);
+                // Comentario
                 contexto.SaveChanges();
             }
 

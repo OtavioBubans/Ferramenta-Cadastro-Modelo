@@ -27,14 +27,14 @@ namespace FerramentaCadastroModelo.Controllers
         public ActionResult SalvarModelo(ModeloModel model)
         {
             var aplicativo = new ModeloAplicativo();
-            Modelo dificuldade = new Modelo()
+            Modelo modelo = new Modelo()
             {
                 IDModelo = model.IDModelo.HasValue ? model.IDModelo.Value : 0,
                 Nome = model.Nome,
                 Sigla = model.Sigla,
                 Descricao = model.Descricao
             };
-            aplicativo.Salvar(dificuldade);
+            aplicativo.Salvar(modelo);
 
             return RedirectToAction("Index");
 
