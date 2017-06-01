@@ -1,0 +1,54 @@
+﻿@model FerramentaCadastroModelo.Models.AreaProcessoModel
+@{
+    ViewBag.Title = "CadastroAreaProcesso";
+}
+
+<h2>Cadastro Area de Processo</h2>
+
+
+@using (Html.BeginForm("SalvarAreaProcesso", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    <div class="form-group">
+        <div class="col-sm-10">
+            Nome:
+            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="col-sm-10">
+            Sigla:
+            @Html.TextBoxFor(model => model.Sigla, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Sigla)
+        </div>
+
+        <div class="col-sm-10">
+            Descrição:
+            @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Descricao)
+        </div>
+       
+        <div class="col-sm-10">
+            @Html.LabelFor(model => model.IDNivelMaturidade, "Nivel", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.DropDownList("IDNivelMaturidade", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IDNivelMaturidade, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-10">
+            @Html.LabelFor(model => model.IDCategoria, "Categoria", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.DropDownList("IDCategoria", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IDCategoria, "", new { @class = "text-danger" })
+        </div>
+
+        
+
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Salvar</button>
+        </div>
+    </div>
+
+    
+
+}

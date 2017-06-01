@@ -1,6 +1,7 @@
 ﻿using FerramentaCadastroModelo.Aplicativo;
 using FerramentaCadastroModelo.Dominio;
 using FerramentaCadastroModelo.Models;
+using FerramentaCadastroModelo.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace FerramentaCadastroModelo.Controllers
 {
     public class HomeController : Controller
     {
+
+        private ContextoDeDados db = new ContextoDeDados();
+
         public ActionResult Index()
         {
             return View();
@@ -19,6 +23,13 @@ namespace FerramentaCadastroModelo.Controllers
      
         public ActionResult CadastroModelo()
         {
+            return View();
+        }
+
+        public ActionResult CadastroAreaProcesso()
+        {
+            ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome");
+            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidDade", "Sigla");
             return View();
         }
 
@@ -36,8 +47,33 @@ namespace FerramentaCadastroModelo.Controllers
             };
             aplicativo.Salvar(modelo);
 
-            return RedirectToAction("Index");
+            // return RedirectToAction("CadastroAreaProcesso");
+            return RedirectToAction("CadastroAreaProcesso");
+        }
 
+        [HttpPost]
+        public ActionResult SalvarAreaProcesso(AreaProcessoModel model, ModeloModel modelo, Categoria categoria, NivelMaturidadeModel nivel)
+        {
+            ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome");
+            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidade", "Nome");
+            
+
+            //  var idModelo = modelo.IDModelo;
+            var aplicativo = new AreaProcessoAplicativo();
+            AreaProcesso areaProcesso = new AreaProcesso()
+            {
+                IDAreaProcesso = model.IDAreaProcesso.HasValue ? model.IDAreaProcesso.Value : 0,
+                Sigla = model.Sigla,
+                Nome = model.Nome,
+                Descricao = model.Descricao,
+                IDModelo = (int)modelo.IDModelo,
+                IDCategoria = (int)categoria.IDCategoria,
+                IDNivelMaturidade = (int)nivel.IDNivelMaturidDade
+            };
+
+            aplicativo.Salvar(areaProcesso);
+
+            return RedirectToAction ("Index");
         }
     }
 }

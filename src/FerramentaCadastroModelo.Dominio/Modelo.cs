@@ -21,7 +21,7 @@ namespace FerramentaCadastroModelo.Dominio
         [Required]
         public string Descricao { get; set; }
 
-        [Required]
+
         public virtual ICollection<AreaProcesso> AreaProcesso { get; set; }
 
 

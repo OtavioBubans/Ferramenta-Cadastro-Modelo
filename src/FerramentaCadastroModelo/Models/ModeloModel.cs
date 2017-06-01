@@ -20,7 +20,7 @@ namespace FerramentaCadastroModelo.Models
         [Required]
         public string Descricao { get; set;}
 
-        [Required]
+    
         public virtual ICollection<AreaProcessoModel> AreaProcessoModel { get; set; }
 
 

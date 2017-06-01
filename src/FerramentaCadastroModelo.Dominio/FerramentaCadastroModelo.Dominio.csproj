@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AreaProcesso.cs" />
     <Compile Include="Categoria.cs" />
+    <Compile Include="Interfaces\IAreaProcessoRepositorio.cs" />
     <Compile Include="MetaEspecifica.cs" />
     <Compile Include="Modelo.cs" />
     <Compile Include="Interfaces\IModeloRepositorio.cs" />
