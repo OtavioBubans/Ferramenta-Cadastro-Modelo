@@ -45,8 +45,10 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="Interfaces\IAreaProcessoRepositorio.cs" />
     <Compile Include="MetaEspecifica.cs" />
+    <Compile Include="MetaGenerica.cs" />
     <Compile Include="Modelo.cs" />
     <Compile Include="Interfaces\IModeloRepositorio.cs" />
+    <Compile Include="NivelCapacidade.cs" />
     <Compile Include="NivelMaturidade.cs" />
     <Compile Include="PraticaEspecifica.cs" />
     <Compile Include="ProdutoTrabalho.cs" />

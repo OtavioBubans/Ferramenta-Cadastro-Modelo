@@ -7,37 +7,37 @@ using System.Web;
 
 namespace FerramentaCadastroModelo.Models
 {
-    public class AreaProcessoModel
+    public class MetaGenericaModel
     {
+
+
         [Key]
-        public int? IDAreaProcesso { get; set; }
+        public int IDMetaGenerica { get; set; }
 
         [Required]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(10)]
         public string Sigla { get; set; }
 
         [Required]
-       // [Index]
-      //  [Index(IsUnique = true)]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(50)]
         public string Nome { get; set; }
 
         [Required]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(250)]
         public string Descricao { get; set; }
+
 
 
         public int IDModelo { get; set; }
         [ForeignKey("IDModelo")]
         public virtual ModeloModel Modelo { get; set; }
 
-        public int IDNivelMaturidade { get; set; }
-        [ForeignKey("IDNivelMaturidade")]
-        public virtual NivelMaturidadeModel NivelMaturidade { get; set; }
-
-        public int IDCategoria { get; set; }
-        [ForeignKey("IDCategoria")]
-        public virtual CategoriaModel Categoria { get; set; }
-
-
-        public virtual ICollection<MetaEspecificaModel> MetasEspecificas { get; set; }
+        public int IDNivelCapacidade { get; set; }
+        [ForeignKey("IDNivelCapacidade")]
+        public virtual NivelCapacidadeModel NivelCapacidade { get; set; }
 
 
 

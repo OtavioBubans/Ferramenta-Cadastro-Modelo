@@ -52,7 +52,7 @@ namespace FerramentaCadastroModelo.Controllers
         }
 
         [HttpPost]
-        public ActionResult SalvarAreaProcesso(AreaProcessoModel model, ModeloModel modelo, Categoria categoria, NivelMaturidadeModel nivel)
+        public ActionResult SalvarAreaProcesso(AreaProcessoModel model)
         {
             ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome");
             ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidade", "Nome");
@@ -66,9 +66,10 @@ namespace FerramentaCadastroModelo.Controllers
                 Sigla = model.Sigla,
                 Nome = model.Nome,
                 Descricao = model.Descricao,
-                IDModelo = (int)modelo.IDModelo,
-                IDCategoria = (int)categoria.IDCategoria,
-                IDNivelMaturidade = (int)nivel.IDNivelMaturidDade
+                IDModelo = model.IDModelo,
+                IDCategoria = model.IDCategoria,
+                IDNivelMaturidade = model.IDNivelMaturidade
+               
             };
 
             aplicativo.Salvar(areaProcesso);

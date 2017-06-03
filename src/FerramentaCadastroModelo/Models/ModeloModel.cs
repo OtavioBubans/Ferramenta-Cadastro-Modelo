@@ -23,6 +23,8 @@ namespace FerramentaCadastroModelo.Models
     
         public virtual ICollection<AreaProcessoModel> AreaProcessoModel { get; set; }
 
+        public virtual ICollection<MetaGenericaModel> MetaGenerica { get; set; }
+
 
         public ModeloModel()
         {
