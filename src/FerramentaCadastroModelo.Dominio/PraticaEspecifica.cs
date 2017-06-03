@@ -14,12 +14,18 @@ namespace FerramentaCadastroModelo.Dominio
         public int? IDPraticaEspecifica { get; set; }
 
         [Required]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(10)]
         public string Sigla { get; set; }
 
         [Required]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(50)]
         public string Nome { get; set; }
 
         [Required]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(250)]
         public string Descricao { get; set; }
 
 
