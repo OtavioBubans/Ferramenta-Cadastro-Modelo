@@ -59,5 +59,14 @@
         </td>
     </tr>
 }
-
 </table>
+
+@using (Html.BeginForm("SubmitAction", "CurrentWebPageToPdf", FormMethod.Post))
+{
+    <article class="post type-post status-publish format-standard hentry">
+        <p>
+         <input type="submit" name="BtnConvert" value="Create PDF" class="mybutton" />
+        </p>
+      
+    </article>
+}

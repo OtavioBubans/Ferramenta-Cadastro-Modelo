@@ -53,17 +53,9 @@
     <Compile Include="AreaProcessoRepositorio.cs" />
     <Compile Include="BaseRepositorioEntity.cs" />
     <Compile Include="ContextoDeDados.cs" />
-    <Compile Include="Migrations\201705301923552_Initial.cs" />
-    <Compile Include="Migrations\201705301923552_Initial.Designer.cs">
-      <DependentUpon>201705301923552_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706032021211_Initial1.cs" />
-    <Compile Include="Migrations\201706032021211_Initial1.Designer.cs">
-      <DependentUpon>201706032021211_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706032248078_Initial2.cs" />
-    <Compile Include="Migrations\201706032248078_Initial2.Designer.cs">
-      <DependentUpon>201706032248078_Initial2.cs</DependentUpon>
+    <Compile Include="Migrations\201706052326219_Inittial.cs" />
+    <Compile Include="Migrations\201706052326219_Inittial.Designer.cs">
+      <DependentUpon>201706052326219_Inittial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRepositorio.cs" />
@@ -80,14 +72,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705301923552_Initial.resx">
-      <DependentUpon>201705301923552_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706032021211_Initial1.resx">
-      <DependentUpon>201706032021211_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706032248078_Initial2.resx">
-      <DependentUpon>201706032248078_Initial2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706052326219_Inittial.resx">
+      <DependentUpon>201706052326219_Inittial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

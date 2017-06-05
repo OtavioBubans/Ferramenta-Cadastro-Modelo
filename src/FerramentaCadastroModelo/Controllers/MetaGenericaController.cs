@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using FerramentaCadastroModelo.Dominio;
 using FerramentaCadastroModelo.Repositorio;
+using Rotativa;
 
 namespace FerramentaCadastroModelo.Controllers
 {
@@ -132,6 +133,16 @@ namespace FerramentaCadastroModelo.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+
+        public ActionResult ExportarPDF()
+        {
+            return new ActionAsPdf("Index")
+            {
+                FileName = Server.MapPath("~/Content/testePDF.PDF")
+            };
         }
     }
 }

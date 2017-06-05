@@ -93,6 +93,14 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.1-beta\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Select.HtmlToPdf, Version=17.1.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.17.1.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -178,9 +186,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AreaProcessoesController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MetaEspecificasController.cs" />
     <Compile Include="Controllers\MetaGenericaController.cs" />
     <Compile Include="Controllers\NivelCapacidadesController.cs" />
+    <Compile Include="Controllers\NivelMaturidadesController.cs" />
+    <Compile Include="Controllers\PraticaEspecificasController.cs" />
+    <Compile Include="Controllers\ProdutoTrabalhoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,7 +226,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -259,6 +277,31 @@
     <Content Include="Views\NivelCapacidades\Details.cshtml" />
     <Content Include="Views\NivelCapacidades\Edit.cshtml" />
     <Content Include="Views\NivelCapacidades\Index.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\MetaEspecificas\Create.cshtml" />
+    <Content Include="Views\MetaEspecificas\Delete.cshtml" />
+    <Content Include="Views\MetaEspecificas\Details.cshtml" />
+    <Content Include="Views\MetaEspecificas\Edit.cshtml" />
+    <Content Include="Views\MetaEspecificas\Index.cshtml" />
+    <Content Include="Views\NivelMaturidades\Create.cshtml" />
+    <Content Include="Views\NivelMaturidades\Delete.cshtml" />
+    <Content Include="Views\NivelMaturidades\Details.cshtml" />
+    <Content Include="Views\NivelMaturidades\Edit.cshtml" />
+    <Content Include="Views\NivelMaturidades\Index.cshtml" />
+    <Content Include="Views\PraticaEspecificas\Create.cshtml" />
+    <Content Include="Views\PraticaEspecificas\Delete.cshtml" />
+    <Content Include="Views\PraticaEspecificas\Details.cshtml" />
+    <Content Include="Views\PraticaEspecificas\Edit.cshtml" />
+    <Content Include="Views\PraticaEspecificas\Index.cshtml" />
+    <Content Include="Views\ProdutoTrabalhoes\Create.cshtml" />
+    <Content Include="Views\ProdutoTrabalhoes\Delete.cshtml" />
+    <Content Include="Views\ProdutoTrabalhoes\Details.cshtml" />
+    <Content Include="Views\ProdutoTrabalhoes\Edit.cshtml" />
+    <Content Include="Views\ProdutoTrabalhoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

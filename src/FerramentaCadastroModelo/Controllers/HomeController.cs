@@ -68,13 +68,12 @@ namespace FerramentaCadastroModelo.Controllers
                 Descricao = model.Descricao,
                 IDModelo = model.IDModelo,
                 IDCategoria = model.IDCategoria,
-                IDNivelMaturidade = model.IDNivelMaturidade
-               
+                IDNivelMaturidade = model.IDNivelMaturidade   
             };
-
             aplicativo.Salvar(areaProcesso);
-
             return RedirectToAction ("Index");
         }
+
+
     }
 }
