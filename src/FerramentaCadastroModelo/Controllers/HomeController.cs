@@ -17,7 +17,7 @@ namespace FerramentaCadastroModelo.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(db.Modelo.OrderBy(s => s.Sigla).ToList());
         }
 
      

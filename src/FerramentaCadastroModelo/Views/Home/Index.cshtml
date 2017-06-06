@@ -1,8 +1,9 @@
-﻿@{
+﻿@model List<FerramentaCadastroModelo.Dominio.Modelo>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+   
 }
-
-
 
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
@@ -17,3 +18,40 @@
 
 <div><a href="@Url.Action("CadastroModelo", "Home")">Modelo</a></div>
 <div><a href="@Url.Action("ExportarPDF", "MetaGenerica")">ExportarPDF</a></div>
+
+
+<table class="table">
+    <tr>
+        <th>
+          Sigla
+        </th>
+        <th>
+          Nome
+        </th>
+        <th>
+          Descrição
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var modelo in Model)
+    {
+        <tr>
+            <td>
+               @modelo.Sigla
+            </td>
+            <td>
+               @modelo.Nome
+            </td>
+            <td>
+               @modelo.Descricao
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = modelo.IDModelo }) |
+                @Html.ActionLink("Details", "Details", new { id = modelo.IDModelo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = modelo.IDModelo })
+            </td>
+        </tr>
+    }
+
+</table>

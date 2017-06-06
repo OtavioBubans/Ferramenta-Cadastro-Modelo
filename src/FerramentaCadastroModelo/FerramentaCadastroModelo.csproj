@@ -190,6 +190,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MetaEspecificasController.cs" />
     <Compile Include="Controllers\MetaGenericaController.cs" />
+    <Compile Include="Controllers\ModeloesController.cs" />
     <Compile Include="Controllers\NivelCapacidadesController.cs" />
     <Compile Include="Controllers\NivelMaturidadesController.cs" />
     <Compile Include="Controllers\PraticaEspecificasController.cs" />
@@ -302,6 +303,11 @@
     <Content Include="Views\ProdutoTrabalhoes\Details.cshtml" />
     <Content Include="Views\ProdutoTrabalhoes\Edit.cshtml" />
     <Content Include="Views\ProdutoTrabalhoes\Index.cshtml" />
+    <Content Include="Views\Modeloes\Create.cshtml" />
+    <Content Include="Views\Modeloes\Delete.cshtml" />
+    <Content Include="Views\Modeloes\Details.cshtml" />
+    <Content Include="Views\Modeloes\Edit.cshtml" />
+    <Content Include="Views\Modeloes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
