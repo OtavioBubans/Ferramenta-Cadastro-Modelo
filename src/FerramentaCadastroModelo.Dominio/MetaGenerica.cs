@@ -32,11 +32,11 @@ namespace FerramentaCadastroModelo.Dominio
 
 
 
-        public int IDModelo { get; set; }
+        public int? IDModelo { get; set; }
         [ForeignKey("IDModelo")]
         public virtual Modelo Modelo { get; set; }
 
-        public int IDNivelCapacidade { get; set; }
+        public int? IDNivelCapacidade { get; set; }
         [ForeignKey("IDNivelCapacidade")]
         public virtual NivelCapacidade NivelCapacidade { get; set; }
 

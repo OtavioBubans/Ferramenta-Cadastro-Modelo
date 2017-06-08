@@ -31,8 +31,7 @@ namespace FerramentaCadastroModelo.Dominio
         public string Descricao { get; set; }
 
 
-        public int IDAreaProcesso { get; set; }
-
+        public int? IDAreaProcesso { get; set; }
         [ForeignKey("IDAreaProcesso")]
         public virtual AreaProcesso AreaProcesso { get; set; }
 
