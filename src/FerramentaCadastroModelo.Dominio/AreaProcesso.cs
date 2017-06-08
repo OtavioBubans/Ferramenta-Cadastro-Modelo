@@ -30,18 +30,15 @@ namespace FerramentaCadastroModelo.Dominio
         public string Descricao { get; set; }
 
 
-        public int IDModelo { get; set; }
-
+        public int? IDModelo { get; set; }
         [ForeignKey("IDModelo")]
         public virtual Modelo Modelo { get; set; }
 
-        public int IDNivelMaturidade { get; set; }
-
+        public int? IDNivelMaturidade { get; set; }
         [ForeignKey("IDNivelMaturidade")]
         public virtual NivelMaturidade NivelMaturidade { get; set; }
 
-        public int IDCategoria { get; set; }
-
+        public int? IDCategoria { get; set; }
         [ForeignKey("IDCategoria")]
         public virtual Categoria Categoria { get; set; }
 

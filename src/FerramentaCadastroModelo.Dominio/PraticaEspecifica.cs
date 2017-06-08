@@ -28,9 +28,8 @@ namespace FerramentaCadastroModelo.Dominio
         [StringLength(250)]
         public string Descricao { get; set; }
 
-
-        public int IDMetaEspecifica { get; set; }
-
+        
+        public int? IDMetaEspecifica { get; set; }
         [ForeignKey("IDMetaEspecifica")]
         public virtual MetaEspecifica MetaEspecifica { get; set; }
 
