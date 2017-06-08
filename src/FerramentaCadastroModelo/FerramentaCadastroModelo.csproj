@@ -308,6 +308,7 @@
     <Content Include="Views\Modeloes\Details.cshtml" />
     <Content Include="Views\Modeloes\Edit.cshtml" />
     <Content Include="Views\Modeloes\Index.cshtml" />
+    <Content Include="Views\Home\DadosCompletos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

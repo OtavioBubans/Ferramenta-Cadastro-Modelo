@@ -11,7 +11,7 @@ namespace FerramentaCadastroModelo.Models
     {
 
         [Key]
-        public int? IDNivelMaturidDade { get; set; }
+        public int? IDNivelMaturidade { get; set; }
 
         [Required]
         public string Sigla { get; set; }

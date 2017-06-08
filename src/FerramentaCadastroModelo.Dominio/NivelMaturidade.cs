@@ -12,7 +12,7 @@ namespace FerramentaCadastroModelo.Dominio
     {
 
         [Key]
-        public int? IDNivelMaturidDade { get; set; }
+        public int? IDNivelMaturidade { get; set; }
 
         [Required]
         [Column(TypeName = "VARCHAR")]

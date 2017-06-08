@@ -137,12 +137,6 @@ namespace FerramentaCadastroModelo.Controllers
 
 
 
-        public ActionResult ExportarPDF()
-        {
-            return new ActionAsPdf("Index")
-            {
-                FileName = Server.MapPath("~/Content/testePDF.PDF")
-            };
-        }
+       
     }
 }
