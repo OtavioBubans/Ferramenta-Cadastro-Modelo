@@ -41,7 +41,9 @@
     {
         <tr>
             <td>
-               @modelo.Sigla
+                <a href="@Url.Action("DadosCompletos", "Home", new { id = modelo.IDModelo })">
+                    @modelo.Sigla
+                </a>
             </td>
             <td>
                @modelo.Nome

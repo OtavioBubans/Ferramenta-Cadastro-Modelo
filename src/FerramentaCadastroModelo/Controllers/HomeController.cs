@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace FerramentaCadastroModelo.Controllers
 {
@@ -24,6 +25,19 @@ namespace FerramentaCadastroModelo.Controllers
             // var studentName = db.Database.ExecuteSqlCommand("Select Modelo.Sigla as 'Sigla Modelo',Modelo.Nome as 'Nome Modelo',Modelo.Descricao as 'Descrição Modelo',metaGenerica.Sigla as 'Sigla Meta Generica',metaGenerica.Nome as 'Nome Meta Generica',metaGenerica.Descricao as 'Descrição Meta Generica',NivelCapacidade.SiglaNivelCapacidade as 'Sigla Nivel Capacidade',NivelCapacidade.Nome as 'Nome Nivel Capacidade',NivelCapacidade.Descricao as 'Descrição Nivel Capacidade'from Modelo full join metaGenerica on Modelo.IDModelo = metaGenerica.IDModelo full join NivelCapacidade on metaGenerica.IDNivelCapacidade = NivelCapacidade.IDNivelCapacidade");
 
             // OleDbConnection connection = new OleDbConnection(db.Database.Connection.ConnectionString);
+
+
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Modelo modelo = db.Modelo.Find(id);
+
+            if (modelo == null)
+            {
+                return HttpNotFound();
+            }
 
             DataSet Ds = new DataSet();
             DataTable dt1 = new DataTable();
@@ -39,8 +53,9 @@ namespace FerramentaCadastroModelo.Controllers
                           "NivelCapacidade.Nome as 'Nome Nivel Capacidade'," +
                           "NivelCapacidade.Descricao as 'Descrição Nivel Capacidade'" +
                           "from Modelo" +
-                          " full join metaGenerica on Modelo.IDModelo = metaGenerica.IDModelo" +
-                          " full join NivelCapacidade on metaGenerica.IDNivelCapacidade = NivelCapacidade.IDNivelCapacidade";
+                          " left join metaGenerica on Modelo.IDModelo = metaGenerica.IDModelo" +
+                          " left join NivelCapacidade on metaGenerica.IDNivelCapacidade = NivelCapacidade.IDNivelCapacidade " +
+                           "Where Modelo.IDModelo = " + id ;
 
             SqlDataAdapter da1 = new SqlDataAdapter(sSQL, (db.Database.Connection.ConnectionString));
            
@@ -55,17 +70,17 @@ namespace FerramentaCadastroModelo.Controllers
                 "MetaEspecifica.Nome as 'Meta Especifica', "+
                 "PraticaEspecifica.Nome as 'Pratica Especifica', "+
                 "ProdutoTrabalho.Nome as 'Produto de Trabaho' from Modelo"+
-                    " inner join AreaProcesso" +
+                    " left join AreaProcesso" +
                     " on modelo.IDModelo = AreaProcesso.IDModelo" +
-                    " inner join Categoria" +
+                    " left join Categoria" +
                     " on Categoria.IDCategoria = AreaProcesso.IDCategoria" +
-                    " inner join NivelMaturidade" +
+                    " left join NivelMaturidade" +
                     " on NivelMaturidade.IDNivelMaturidade = AreaProcesso.IDNivelMaturidade" +
-                    " inner join MetaEspecifica" +
+                    " left join MetaEspecifica" +
                     " on MetaEspecifica.IDAreaProcesso = AreaProcesso.IDAreaProcesso" +
-                    " inner join PraticaEspecifica" +
+                    " left join PraticaEspecifica" +
                     " on PraticaEspecifica.IDMetaEspecifica = MetaEspecifica.IDMetaEspecifica" +
-                    " inner join ProdutoTrabalho" +
+                    " left join ProdutoTrabalho" +
                     " on ProdutoTrabalho.IDProdutoTrabalho = PraticaEspecifica.ProdutoTrabalho_IDProdutoTrabalho";
 
             SqlDataAdapter da2 = new SqlDataAdapter(sSQL, (db.Database.Connection.ConnectionString));
