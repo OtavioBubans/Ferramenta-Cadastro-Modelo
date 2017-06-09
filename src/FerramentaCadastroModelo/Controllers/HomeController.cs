@@ -19,7 +19,7 @@ namespace FerramentaCadastroModelo.Controllers
 
         private ContextoDeDados db = new ContextoDeDados();
 
-        public ActionResult DadosCompletos()
+        public ActionResult DadosCompletos( int? id)
         {
             // var studentName = db.Database.ExecuteSqlCommand("Select Modelo.Sigla as 'Sigla Modelo',Modelo.Nome as 'Nome Modelo',Modelo.Descricao as 'Descrição Modelo',metaGenerica.Sigla as 'Sigla Meta Generica',metaGenerica.Nome as 'Nome Meta Generica',metaGenerica.Descricao as 'Descrição Meta Generica',NivelCapacidade.SiglaNivelCapacidade as 'Sigla Nivel Capacidade',NivelCapacidade.Nome as 'Nome Nivel Capacidade',NivelCapacidade.Descricao as 'Descrição Nivel Capacidade'from Modelo full join metaGenerica on Modelo.IDModelo = metaGenerica.IDModelo full join NivelCapacidade on metaGenerica.IDNivelCapacidade = NivelCapacidade.IDNivelCapacidade");
 

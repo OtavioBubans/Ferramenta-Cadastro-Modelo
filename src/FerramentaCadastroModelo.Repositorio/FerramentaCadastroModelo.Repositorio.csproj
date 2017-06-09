@@ -53,9 +53,9 @@
     <Compile Include="AreaProcessoRepositorio.cs" />
     <Compile Include="BaseRepositorioEntity.cs" />
     <Compile Include="ContextoDeDados.cs" />
-    <Compile Include="Migrations\201706052326219_Inittial.cs" />
-    <Compile Include="Migrations\201706052326219_Inittial.Designer.cs">
-      <DependentUpon>201706052326219_Inittial.cs</DependentUpon>
+    <Compile Include="Migrations\201706082315389_Inittial.cs" />
+    <Compile Include="Migrations\201706082315389_Inittial.Designer.cs">
+      <DependentUpon>201706082315389_Inittial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRepositorio.cs" />
@@ -72,8 +72,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706052326219_Inittial.resx">
-      <DependentUpon>201706052326219_Inittial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706082315389_Inittial.resx">
+      <DependentUpon>201706082315389_Inittial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

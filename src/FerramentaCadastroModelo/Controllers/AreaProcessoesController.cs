@@ -42,7 +42,7 @@ namespace FerramentaCadastroModelo.Controllers
         {
             ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome");
             ViewBag.IDModelo = new SelectList(db.Modelo, "IDModelo", "Sigla");
-            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidDade", "Sigla");
+            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidade", "Sigla");
             return View();
         }
 

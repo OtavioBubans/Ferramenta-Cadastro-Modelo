@@ -13,7 +13,7 @@ namespace FerramentaCadastroModelo.Repositorio.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706052326219_Inittial"; }
+            get { return "201706082315389_Inittial"; }
         }
         
         string IMigrationMetadata.Source
