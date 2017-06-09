@@ -23,30 +23,57 @@ namespace FerramentaCadastroModelo.Controllers
         {
             // var studentName = db.Database.ExecuteSqlCommand("Select Modelo.Sigla as 'Sigla Modelo',Modelo.Nome as 'Nome Modelo',Modelo.Descricao as 'Descrição Modelo',metaGenerica.Sigla as 'Sigla Meta Generica',metaGenerica.Nome as 'Nome Meta Generica',metaGenerica.Descricao as 'Descrição Meta Generica',NivelCapacidade.SiglaNivelCapacidade as 'Sigla Nivel Capacidade',NivelCapacidade.Nome as 'Nome Nivel Capacidade',NivelCapacidade.Descricao as 'Descrição Nivel Capacidade'from Modelo full join metaGenerica on Modelo.IDModelo = metaGenerica.IDModelo full join NivelCapacidade on metaGenerica.IDNivelCapacidade = NivelCapacidade.IDNivelCapacidade");
 
-           // OleDbConnection connection = new OleDbConnection(db.Database.Connection.ConnectionString);
+            // OleDbConnection connection = new OleDbConnection(db.Database.Connection.ConnectionString);
 
-            DataTable dt = new DataTable();
-            string sSQL = "Select ";
-            sSQL += "Modelo.Sigla as 'Sigla Modelo',";
-            sSQL += "Modelo.Nome as 'Nome Modelo',";
-            sSQL += "Modelo.Descricao as 'Descrição Modelo',";
-            sSQL += "metaGenerica.Sigla as 'Sigla Meta Generica',";
-            sSQL += "metaGenerica.Nome as 'Nome Meta Generica',";
-            sSQL += "metaGenerica.Descricao as 'Descrição Meta Generica',";
-            sSQL += "NivelCapacidade.SiglaNivelCapacidade as 'Sigla Nivel Capacidade',";
-            sSQL += "NivelCapacidade.Nome as 'Nome Nivel Capacidade',";
-            sSQL += "NivelCapacidade.Descricao as 'Descrição Nivel Capacidade'";
-            sSQL += "from Modelo";
-            sSQL += " full join metaGenerica on Modelo.IDModelo = metaGenerica.IDModelo";
-            sSQL += " full join NivelCapacidade on metaGenerica.IDNivelCapacidade = NivelCapacidade.IDNivelCapacidade";
+            DataSet Ds = new DataSet();
+            DataTable dt1 = new DataTable();
+            DataTable dt2 = new DataTable();
+            string sSQL = "Select " +
+                          "Modelo.Sigla as 'Sigla Modelo'," +
+                          "Modelo.Nome as 'Nome Modelo'," +
+                          "Modelo.Descricao as 'Descrição Modelo'," +
+                          //"metaGenerica.Sigla as 'Sigla Meta Generica'," +
+                          "metaGenerica.Nome as 'Nome Meta Generica'," +
+                          "metaGenerica.Descricao as 'Descrição Meta Generica'," +
+                          //"NivelCapacidade.SiglaNivelCapacidade as 'Sigla Nivel Capacidade'," +
+                          "NivelCapacidade.Nome as 'Nome Nivel Capacidade'," +
+                          "NivelCapacidade.Descricao as 'Descrição Nivel Capacidade'" +
+                          "from Modelo" +
+                          " full join metaGenerica on Modelo.IDModelo = metaGenerica.IDModelo" +
+                          " full join NivelCapacidade on metaGenerica.IDNivelCapacidade = NivelCapacidade.IDNivelCapacidade";
 
-            SqlDataAdapter da = new SqlDataAdapter(sSQL, (db.Database.Connection.ConnectionString));
-
-            da.Fill(dt);
-
-
+            SqlDataAdapter da1 = new SqlDataAdapter(sSQL, (db.Database.Connection.ConnectionString));
            
-            return View(dt);
+
+            da1.Fill(dt1);
+            Ds.Tables.Add(dt1);
+
+
+            sSQL = "select AreaProcesso.Nome as 'Area de Processos', " +
+                "Categoria.Nome as 'Categoria', " +
+                "NivelMaturidade.Nome as 'Nivel Maturidade', "+
+                "MetaEspecifica.Nome as 'Meta Especifica', "+
+                "PraticaEspecifica.Nome as 'Pratica Especifica', "+
+                "ProdutoTrabalho.Nome as 'Produto de Trabaho' from Modelo"+
+                    " inner join AreaProcesso" +
+                    " on modelo.IDModelo = AreaProcesso.IDModelo" +
+                    " inner join Categoria" +
+                    " on Categoria.IDCategoria = AreaProcesso.IDCategoria" +
+                    " inner join NivelMaturidade" +
+                    " on NivelMaturidade.IDNivelMaturidade = AreaProcesso.IDNivelMaturidade" +
+                    " inner join MetaEspecifica" +
+                    " on MetaEspecifica.IDAreaProcesso = AreaProcesso.IDAreaProcesso" +
+                    " inner join PraticaEspecifica" +
+                    " on PraticaEspecifica.IDMetaEspecifica = MetaEspecifica.IDMetaEspecifica" +
+                    " inner join ProdutoTrabalho" +
+                    " on ProdutoTrabalho.IDProdutoTrabalho = PraticaEspecifica.ProdutoTrabalho_IDProdutoTrabalho";
+
+            SqlDataAdapter da2 = new SqlDataAdapter(sSQL, (db.Database.Connection.ConnectionString));
+
+            da2.Fill(dt2);
+                    Ds.Tables.Add(dt2);
+
+            return View(Ds);
            // return View(db.Modelo.OrderBy(s => s.Sigla).ToList());
         }
 
@@ -64,7 +91,7 @@ namespace FerramentaCadastroModelo.Controllers
         public ActionResult CadastroAreaProcesso()
         {
             ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome");
-            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidDade", "Sigla");
+            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidade", "Sigla");
             return View();
         }
 

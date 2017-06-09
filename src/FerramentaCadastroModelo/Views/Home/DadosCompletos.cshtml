@@ -1,22 +1,25 @@
-﻿@model System.Data.DataTable
+﻿@model System.Data.DataSet
 @using System.Data;
 
 <h2>Report</h2>
 
-<table>
+ 
+
+
+<table class="table">
     <thead>
         <tr>
-            @foreach (DataColumn col in Model.Columns)
+            @foreach (DataColumn col in Model.Tables[0].Columns)
             {
                 <th>@col.ColumnName</th>
             }
         </tr>
     </thead>
     <tbody>
-        @foreach (DataRow row in Model.Rows)
+        @foreach (DataRow row in Model.Tables[0].Rows)
         {
             <tr>
-                @foreach (DataColumn col in Model.Columns)
+                @foreach (DataColumn col in Model.Tables[0].Columns)
                 {
                     <td>@row[col.ColumnName]</td>
                 }
@@ -25,20 +28,20 @@
     </tbody>
 </table>
 
-<table>
+<table class="table">
     <thead>
         <tr>
-            @foreach (DataColumn col in Model.Columns)
+            @foreach (DataColumn col in Model.Tables[1].Columns)
             {
                 <th>@col.ColumnName</th>
             }
         </tr>
     </thead>
     <tbody>
-        @foreach (DataRow row in Model.Rows)
+        @foreach (DataRow row in Model.Tables[1].Rows)
         {
             <tr>
-                @foreach (DataColumn col in Model.Columns)
+                @foreach (DataColumn col in Model.Tables[1].Columns)
                 {
                     <td>@row[col.ColumnName]</td>
                 }
