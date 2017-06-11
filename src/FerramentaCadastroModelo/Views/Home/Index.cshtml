@@ -2,37 +2,28 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-   
+    ViewBag.Title = "Inicio";
 }
 
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 
-<h2> Tela Inicial</h2>
-
-
-<br />
-<br />
-<br />
-<br />
-
-<div><a href="@Url.Action("CadastroModelo", "Home")">Modelo</a></div>
-<div><a href="@Url.Action("ExportarPDF", "MetaGenerica")">ExportarPDF</a></div>
-
-<div><a href="@Url.Action("DadosCompletos", "Home")">Dados Completos Para Exportacao PDF</a></div>
 
 
 
-<table class="table">
+
+
+
+<table class="table table-striped">
     <tr>
         <th>
-          Sigla
+            Sigla
         </th>
         <th>
-          Nome
+            Nome
         </th>
         <th>
-          Descrição
+            Descrição
         </th>
         <th></th>
     </tr>
@@ -41,22 +32,20 @@
     {
         <tr>
             <td>
-                <a href="@Url.Action("DadosCompletos", "Home", new { id = modelo.IDModelo })">
-                    @modelo.Sigla
-                </a>
+               @modelo.Sigla
             </td>
             <td>
-               @modelo.Nome
+                @modelo.Nome
             </td>
             <td>
-               @modelo.Descricao
+                @modelo.Descricao
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = modelo.IDModelo }) |
-                @Html.ActionLink("Details", "Details", new { id = modelo.IDModelo }) |
-                @Html.ActionLink("Delete", "Delete", new { id = modelo.IDModelo })
-            </td>
+                <a href="@Url.Action("DadosCompletos", "Home", new { id = modelo.IDModelo })">Exportar para PDF</a>
+            </td> 
         </tr>
     }
 
 </table>
+              
+

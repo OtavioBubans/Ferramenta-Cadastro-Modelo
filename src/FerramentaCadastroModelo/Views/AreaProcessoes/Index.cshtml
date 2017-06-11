@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<FerramentaCadastroModelo.Dominio.AreaProcesso>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Áreas de Processo ";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Area de Processo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -61,12 +59,3 @@
 }
 </table>
 
-@using (Html.BeginForm("SubmitAction", "CurrentWebPageToPdf", FormMethod.Post))
-{
-    <article class="post type-post status-publish format-standard hentry">
-        <p>
-         <input type="submit" name="BtnConvert" value="Create PDF" class="mybutton" />
-        </p>
-      
-    </article>
-}

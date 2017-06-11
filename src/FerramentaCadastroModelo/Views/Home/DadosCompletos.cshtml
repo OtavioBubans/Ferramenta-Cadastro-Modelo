@@ -1,6 +1,10 @@
 ﻿@model System.Data.DataSet
 @using System.Data;
 
+
+@{ 
+    Layout = "~/Views/Shared/_LayoutPDF.cshtml";
+}
 <h2>Report</h2>
 
  
@@ -51,4 +55,5 @@
 </table>
 
 
-<div><a href="@Url.Action("ExportarPDF", "Home")">ExportarPDF</a></div>
+<div><a href="@Url.Action("ExportarPDF", "Home")">Exportar para PDF</a></div>
+<div><a href="@Url.Action("Index", "Home")">Voltar</a></div>

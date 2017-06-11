@@ -3,15 +3,58 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Ferramenta de Cadastro de Modelo</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
 
-    @RenderBody()
-  
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <ul class="nav nav-pills">
+                <li role="presentation"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li role="presentation"><a href="#">O que é?</a></li>
+                <li role="presentation"><a href="#">Como funciona?</a></li>
+                <li role="presentation"><a href="#">Contato</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>@ViewBag.Title</h3></div>
+
+                    @RenderBody()
+
+                </div>
+
+            </div>
+
+            <div class="btn-group-vertical col-md-3" role="group" aria-label="...">
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Index", "Modeloes")">Modelo</a>
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Index", "MetaGenerica")">Meta Generica</a>
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Index", "NivelCapacidades")">Nivel Capacidade</a>
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Index", "AreaProcessoes")">Area de Processo</a>
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Index", "NivelMaturidades")">Nivel de Maturidade</a>
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Index", "Categoria")">Categoria</a>
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Index", "MetaEspecificas")">Meta Específica</a>
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Index", "PraticaEspecificas")">Prática Específica</a>
+                <a class="btn btn-lg btn-primary" href="@Url.Action("Index", "ProdutoTrabalhoes")">Produto de Trabalho</a>
+            </div>
+        </div>
+    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
