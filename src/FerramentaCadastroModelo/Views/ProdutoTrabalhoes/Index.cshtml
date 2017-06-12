@@ -1,20 +1,23 @@
 ﻿@model IEnumerable<FerramentaCadastroModelo.Dominio.ProdutoTrabalho>
 
 @{
-    ViewBag.Title = "Produtos de Trabalho";
+    ViewBag.Title = "Index";
 }
 
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Add Produto de Trabalho", "Create")
+    @Html.ActionLink("Create New", "Create", FormMethod.Post, new { enctype = "multipart/form-data", id = "myUploadForm" }))
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tamplate)
+        <th>@Html.DisplayNameFor(model => model.NomeArquivo)
+        
+              
+           
         </th>
         <th></th>
     </tr>
@@ -25,12 +28,17 @@
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Tamplate)
+           
+
+                <a href="@Url.Action("Download", "ProdutoTrabalhoes", new { id = item.IDProdutoTrabalho })">@Html.DisplayFor(modelItem => item.NomeArquivo)</a>
+
+       
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IDProdutoTrabalho }) |
             @Html.ActionLink("Details", "Details", new { id=item.IDProdutoTrabalho }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.IDProdutoTrabalho })
+           
         </td>
     </tr>
 }

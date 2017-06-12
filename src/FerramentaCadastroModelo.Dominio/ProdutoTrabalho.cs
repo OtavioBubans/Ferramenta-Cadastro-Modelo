@@ -21,10 +21,17 @@ namespace FerramentaCadastroModelo.Dominio
         public string Nome { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(250)]
-        public string Tamplate { get; set; }
+        [StringLength(50)]
+        public string NomeArquivo { get; set; }
 
-        public virtual ICollection<PraticaEspecifica> PraticaEspecifica { get; set; }
+
+        [Column(TypeName = "varbinary(max)")]
+        public byte[] Tamplate { get; set; }
+
+        public int? IDPraticaEspecifica { get; set; }
+        [ForeignKey("IDPraticaEspecifica")]
+        public virtual PraticaEspecifica PraticaEspecifica { get; set; }
+
 
         public ProdutoTrabalho()
         {

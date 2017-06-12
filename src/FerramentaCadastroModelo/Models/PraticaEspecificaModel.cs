@@ -27,6 +27,7 @@ namespace FerramentaCadastroModelo.Models
         [ForeignKey("IDMetaEspecifica")]
         public virtual MetaEspecificaModel MetaEspecifica { get; set; }
 
+        public virtual ICollection<ProdutoTrabalhoModel> ProdutoTrabalhoModel { get; set; }
 
 
 
