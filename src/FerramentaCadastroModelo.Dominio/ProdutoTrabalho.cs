@@ -28,9 +28,7 @@ namespace FerramentaCadastroModelo.Dominio
         [Column(TypeName = "varbinary(max)")]
         public byte[] Tamplate { get; set; }
 
-        public int? IDPraticaEspecifica { get; set; }
-        [ForeignKey("IDPraticaEspecifica")]
-        public virtual PraticaEspecifica PraticaEspecifica { get; set; }
+        public ICollection<PraticaEspecifica> PraticaEspecifica { get; set; }
 
 
         public ProdutoTrabalho()

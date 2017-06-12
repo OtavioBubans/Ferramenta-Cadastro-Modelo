@@ -33,7 +33,10 @@ namespace FerramentaCadastroModelo.Dominio
         [ForeignKey("IDMetaEspecifica")]
         public virtual MetaEspecifica MetaEspecifica { get; set; }
 
-        public virtual ICollection<ProdutoTrabalho> ProdutoTrabalho { get; set; }
+        public int? IDProdutoTrabalho{ get; set; }
+        [ForeignKey("IDProdutoTrabalho")]
+        public virtual ProdutoTrabalho ProdutoTrabalho { get; set; }
+
 
         public PraticaEspecifica()
         {
