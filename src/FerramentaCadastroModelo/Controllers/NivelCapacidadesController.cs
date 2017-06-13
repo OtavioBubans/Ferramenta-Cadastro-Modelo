@@ -51,6 +51,23 @@ namespace FerramentaCadastroModelo.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+                string nome = nivelCapacidade.Nome;
+                string sigla = nivelCapacidade.SiglaNivelCapacidade;
+
+
+                if (db.NivelCapacidade.FirstOrDefault(s => s.SiglaNivelCapacidade.Equals(sigla)) != null)
+                {
+                    ViewBag.Sigla = "Já existe um Nivel de Capacidade com essa SIGLA!";
+                    return View(nivelCapacidade);
+                };
+
+                if (db.NivelCapacidade.FirstOrDefault(n => n.Nome.Equals(nome)) != null)
+                {
+                    ViewBag.Nome = "Já existe um Nivel de Capacidade com esse NOME!";
+                    return View(nivelCapacidade);
+                };
+
                 db.NivelCapacidade.Add(nivelCapacidade);
                 db.SaveChanges();
                 return RedirectToAction("Index");

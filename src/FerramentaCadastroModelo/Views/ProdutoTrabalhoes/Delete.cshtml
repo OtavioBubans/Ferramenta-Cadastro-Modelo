@@ -1,14 +1,12 @@
 ﻿@model FerramentaCadastroModelo.Dominio.ProdutoTrabalho
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Excluir";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+
 <div>
-    <h4>ProdutoTrabalho</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,15 +18,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tamplate)
+            @Html.DisplayNameFor(model => model.NomeArquivo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Tamplate)
+            @Html.DisplayFor(model => model.NomeArquivo)
         </dd>
 
     </dl>
 
+  
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 

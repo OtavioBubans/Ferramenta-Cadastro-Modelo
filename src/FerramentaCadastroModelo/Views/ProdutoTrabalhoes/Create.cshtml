@@ -1,7 +1,7 @@
 ﻿@model FerramentaCadastroModelo.Dominio.ProdutoTrabalho
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Novo Produto de Trabalho";
 }
 
 
@@ -29,7 +29,7 @@
         <div class="form-group"></div>
         
             <fieldset>
-                <label class="control-label col-md-2">Upload a file</label>
+                <label class="control-label col-md-2">Faça Upload de um arquivo</label>
                 <div class="col-md-10">
                     <div class="editor-field">
                         @Html.TextBox("file", "", new { type = "file" })
@@ -51,7 +51,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar para lista", "Index")
 </div>
 
 @section Scripts {

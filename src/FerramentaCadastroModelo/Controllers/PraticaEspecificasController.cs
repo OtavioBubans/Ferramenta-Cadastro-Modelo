@@ -56,6 +56,27 @@ namespace FerramentaCadastroModelo.Controllers
             if (ModelState.IsValid)
             {
 
+                string sigla = praticaEspecifica.Sigla;
+                string nome = praticaEspecifica.Nome;
+                int? idMetaEspecifica = praticaEspecifica.IDMetaEspecifica;
+
+                if (ValidaSigla(sigla, idMetaEspecifica))
+                {
+                    ViewBag.IDMetaEspecifica = new SelectList(db.MetaEspecifica, "IDMetaEspecifica", "Sigla");
+                    ViewBag.IDProdutoTrabalho = new SelectList(db.ProdutoTrabalho, "IDProdutoTrabalho", "Nome");
+                    ViewBag.Sigla = "Já existe essa SIGLA nesta META ESPECIFICA!";
+                    return View(praticaEspecifica);
+                };
+
+
+                if (ValidaNome(nome, idMetaEspecifica))
+                {
+                    ViewBag.IDMetaEspecifica = new SelectList(db.MetaEspecifica, "IDMetaEspecifica", "Sigla");
+                    ViewBag.IDProdutoTrabalho = new SelectList(db.ProdutoTrabalho, "IDProdutoTrabalho", "Nome");
+                    ViewBag.Nome = "Já existe esse NOME nesta META ESPECIFICA!";
+                    return View(praticaEspecifica);
+                };
+
                 db.PraticaEspecifica.Add(praticaEspecifica);
                 db.SaveChanges();
 
@@ -142,6 +163,40 @@ namespace FerramentaCadastroModelo.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        protected bool ValidaSigla(string sigla, int? id)
+        {
+            var existe = db.PraticaEspecifica
+                    .Include(p => p.MetaEspecifica)
+                    .Where(p => p.Sigla == sigla && p.IDMetaEspecifica == id)
+                    .Count();
+            if (existe > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            };
+        }
+
+
+        protected bool ValidaNome(string nome, int? id)
+        {
+            var existe = db.PraticaEspecifica
+                    .Include(p => p.MetaEspecifica)
+                    .Where(p => p.Nome == nome && p.IDMetaEspecifica == id)
+                    .Count();
+            if (existe > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            };
         }
     }
 }

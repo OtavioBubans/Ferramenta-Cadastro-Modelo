@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using FerramentaCadastroModelo.Dominio;
 using FerramentaCadastroModelo.Repositorio;
 using Rotativa;
+using System.Collections;
 
 namespace FerramentaCadastroModelo.Controllers
 {
@@ -55,6 +56,26 @@ namespace FerramentaCadastroModelo.Controllers
         {
             if (ModelState.IsValid)
             {
+                string sigla = metaGenerica.Sigla;
+                string nome = metaGenerica.Nome;
+                int? idModelo = metaGenerica.IDModelo;
+                   
+                if (ValidaSigla(sigla, idModelo))
+                {
+                    ViewBag.IDModelo = new SelectList(db.Modelo, "IDModelo", "Sigla");
+                    ViewBag.IDNivelCapacidade = new SelectList(db.NivelCapacidade, "IDNivelCapacidade", "SiglaNivelCapacidade");
+                    ViewBag.Sigla = "Já existe essa SIGLA neste MODELO";
+                    return View(metaGenerica);
+                };
+
+                if (ValidaNome(nome, idModelo))
+                {
+                    ViewBag.IDModelo = new SelectList(db.Modelo, "IDModelo", "Sigla");
+                    ViewBag.IDNivelCapacidade = new SelectList(db.NivelCapacidade, "IDNivelCapacidade", "SiglaNivelCapacidade");
+                    ViewBag.Nome = "Já existe esse NOME neste MODELO";
+                    return View(metaGenerica);
+                };
+
                 db.MetaGenerica.Add(metaGenerica);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -133,6 +154,38 @@ namespace FerramentaCadastroModelo.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        protected bool ValidaSigla( string sigla, int? id )
+        {
+            var existe = db.MetaGenerica
+                    .Include(m => m.Modelo)
+                    .Include(m => m.NivelCapacidade)
+                    .Where(m => m.Sigla == sigla && m.IDModelo == id).Count();
+            if (existe > 0)
+            {
+                return true;
+            }
+            else { 
+                return false;
+            };
+        }
+
+        protected bool ValidaNome(string nome, int? id)
+        {
+            var existe = db.MetaGenerica
+                   .Include(m => m.Modelo)
+                   .Include(m => m.NivelCapacidade)
+                   .Where(m => m.Nome == nome && m.IDModelo == id).Count();
+            if (existe > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            };
         }
 
 

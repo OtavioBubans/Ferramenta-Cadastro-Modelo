@@ -14,6 +14,7 @@ namespace FerramentaCadastroModelo.Dominio
         [Key]
         public int? IDNivelCapacidade { get; set; }
 
+        [Required]
         [Column(TypeName = "VARCHAR")]
         [StringLength(10)]
       //  [Index(IsUnique = true)]

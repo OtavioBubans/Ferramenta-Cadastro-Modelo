@@ -51,6 +51,21 @@ namespace FerramentaCadastroModelo.Controllers
         {
             if (ModelState.IsValid)
             {
+                string nome = nivelMaturidade.Nome;
+                string sigla = nivelMaturidade.Sigla;
+
+                if (db.NivelMaturidade.FirstOrDefault(s => s.Sigla.Equals(sigla)) != null)
+                {
+                    ViewBag.Sigla = "ATENÇÃO - Já existe um Nivel com essa SIGLA!";
+                    return View(nivelMaturidade);
+                };
+
+                if (db.NivelMaturidade.FirstOrDefault(n => n.Nome.Equals(nome)) != null )
+                {
+                    ViewBag.Nome = "ATENÇÃO -  Já existe Nivel com esse NOME!";
+                    return View(nivelMaturidade);
+                };
+
                 db.NivelMaturidade.Add(nivelMaturidade);
                 db.SaveChanges();
                 return RedirectToAction("Index");

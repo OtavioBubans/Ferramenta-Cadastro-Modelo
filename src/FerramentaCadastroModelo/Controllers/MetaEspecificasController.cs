@@ -53,6 +53,24 @@ namespace FerramentaCadastroModelo.Controllers
         {
             if (ModelState.IsValid)
             {
+                string sigla = metaEspecifica.Sigla;
+                string nome = metaEspecifica.Nome;
+                int? idAreaProcesso = metaEspecifica.IDAreaProcesso;
+
+                if (ValidaSigla(sigla,idAreaProcesso))
+                {
+                    ViewBag.IDAreaProcesso = new SelectList(db.AreaProcesso, "IDAreaProcesso", "Sigla");
+                    ViewBag.Sigla = "Já existe essa SIGLA nesta AREA DE PROCESSO!";
+                    return View(metaEspecifica);
+                };
+
+                if (ValidaNome(nome, idAreaProcesso))
+                {
+                    ViewBag.IDAreaProcesso = new SelectList(db.AreaProcesso, "IDAreaProcesso", "Sigla");
+                    ViewBag.Nome = "Já existe esse NOME nesta AREA DE PROCESSO!";
+                    return View(metaEspecifica);
+                };
+
                 db.MetaEspecifica.Add(metaEspecifica);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -129,5 +147,40 @@ namespace FerramentaCadastroModelo.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        protected bool ValidaSigla(string sigla, int? id)
+        {
+            var existe = db.MetaEspecifica
+                    .Include(m => m.AreaProcesso)
+                    .Where(m => m.Sigla == sigla && m.IDAreaProcesso == id)
+                    .Count();
+            if (existe > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            };
+        }
+
+        protected bool ValidaNome(string nome, int? id)
+        {
+            var existe = db.MetaEspecifica
+                    .Include(m => m.AreaProcesso)
+                    .Where(m => m.Nome == nome && m.IDAreaProcesso == id)
+                    .Count();
+            if (existe > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            };
+        }
+
+
     }
 }

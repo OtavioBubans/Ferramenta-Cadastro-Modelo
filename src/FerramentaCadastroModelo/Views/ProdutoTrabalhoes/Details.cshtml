@@ -1,13 +1,12 @@
 ﻿@model FerramentaCadastroModelo.Dominio.ProdutoTrabalho
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>ProdutoTrabalho</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,16 +18,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tamplate)
+            @Html.DisplayNameFor(model => model.NomeArquivo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Tamplate)
+            @Html.DisplayFor(model => model.NomeArquivo)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDProdutoTrabalho }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IDProdutoTrabalho }) |
+    @Html.ActionLink("Voltar a Lista", "Index")
 </p>

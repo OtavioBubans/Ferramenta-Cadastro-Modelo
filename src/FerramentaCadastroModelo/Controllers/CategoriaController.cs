@@ -51,6 +51,14 @@ namespace FerramentaCadastroModelo.Controllers
         {
             if (ModelState.IsValid)
             {
+                string nome = categoria.Nome;
+
+                if (db.Categoria.FirstOrDefault(n => n.Nome.Equals(nome)) != null )
+                {
+                    ViewBag.Nome = "Já existe uma Categoria com esse Nome!";
+                    return View(categoria);
+                };
+
                 db.Categoria.Add(categoria);
                 db.SaveChanges();
                 return RedirectToAction("Index");

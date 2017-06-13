@@ -54,16 +54,17 @@ namespace FerramentaCadastroModelo.Controllers
 
                 string nome = modelo.Nome;
                 string sigla = modelo.Sigla;
+                var validaSigla = db.Modelo.FirstOrDefault(x => x.Nome.Equals(nome));
 
-                if (db.Modelo.FirstOrDefault(x => x.Nome.Equals(nome)) != null )
+                if (validaSigla != null )
                 {
-                    ViewBag.Mensagem = "Esse Nome ja existe!";
+                    ViewBag.Nome = "Esse Nome ja existe!";
                     return View(modelo);
                 };
 
                 if (db.Modelo.FirstOrDefault(x => x.Sigla.Equals(sigla)) != null)
                 {
-                    ViewBag.Mensagem = "Essa Sigla já existe!";
+                    ViewBag.Sigla = "Essa Sigla já existe!";
                     return View(modelo);
                 };
 

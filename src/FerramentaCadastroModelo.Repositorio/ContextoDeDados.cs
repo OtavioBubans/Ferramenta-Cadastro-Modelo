@@ -26,6 +26,7 @@ namespace FerramentaCadastroModelo.Repositorio
         public DbSet<NivelCapacidade> NivelCapacidade { get; set; }
         public DbSet<PraticaEspecifica> PraticaEspecifica { get; set; }
         public DbSet<ProdutoTrabalho> ProdutoTrabalho { get; set; }
+        public DbSet<ProdutoTrabalhoXPraticaEspecifica> ProdutoTrabalhoXPraticaEspecifica { get; set; }
 
 
 

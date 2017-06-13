@@ -55,6 +55,31 @@ namespace FerramentaCadastroModelo.Controllers
         {
             if (ModelState.IsValid)
             {
+                string nome = areaProcesso.Nome;
+                string sigla = areaProcesso.Sigla;
+                int? idModelo = areaProcesso.IDModelo;
+
+                if (ValidaSigla(sigla, idModelo))
+                {
+                    ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome");
+                    ViewBag.IDModelo = new SelectList(db.Modelo, "IDModelo", "Sigla");
+                    ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidade", "Sigla");
+                    ViewBag.Sigla = "Já existe essa SIGLA neste MODELO!";
+                    return View(areaProcesso);
+
+                };
+
+                if (ValidaNome(nome, idModelo))
+                {
+                    ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome");
+                    ViewBag.IDModelo = new SelectList(db.Modelo, "IDModelo", "Sigla");
+                    ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidade", "Sigla");
+                    ViewBag.Nome = "Já existe esse NOME neste MODELO!";
+                    return View(areaProcesso);
+
+                };
+
+
                 db.AreaProcesso.Add(areaProcesso);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -137,5 +162,41 @@ namespace FerramentaCadastroModelo.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        protected bool ValidaSigla(string sigla, int? id)
+        {
+            var existe = db.AreaProcesso
+                    .Include(a => a.Categoria)
+                    .Include(a => a.NivelMaturidade)
+                    .Include(a => a.Modelo)
+                    .Where(a => a.Sigla == sigla && a.IDModelo == id).Count();
+            if (existe > 0){
+                return true;
+            }
+            else
+            {
+                return false;
+            };
+        }
+
+        protected bool ValidaNome(string nome, int? id)
+        {
+            var existe = db.AreaProcesso
+                    .Include(n => n.Categoria)
+                    .Include(n => n.NivelMaturidade)
+                    .Include(n => n.Modelo)
+                    .Where(n => n.Nome == nome && n.IDModelo == id).Count();
+            if (existe > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            };
+        }
+
+
     }
 }
