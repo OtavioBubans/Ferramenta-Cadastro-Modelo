@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using FerramentaCadastroModelo.Dominio;
 using FerramentaCadastroModelo.Repositorio;
+using System.IO;
+using System.Web.UI;
 
 namespace FerramentaCadastroModelo.Controllers
 {
@@ -39,6 +41,8 @@ namespace FerramentaCadastroModelo.Controllers
         // GET: ProdutoTrabalhoes/Create
         public ActionResult Create()
         {
+            //   ViewBag.IDPraticaEspecifica = new SelectList(db.PraticaEspecifica, "IDPraticaEspecifica","Sigla", "Descricao");
+
             return View();
         }
 
@@ -47,17 +51,63 @@ namespace FerramentaCadastroModelo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDProdutoTrabalho,Nome,Tamplate")] ProdutoTrabalho produtoTrabalho)
-        {
+        public ActionResult Create([Bind(Include = "IDProdutoTrabalho,Nome,NomeArquivo,Tamplate")] ProdutoTrabalho produtoTrabalho, HttpPostedFileBase file)
+       {
             if (ModelState.IsValid)
             {
+                if (file != null && file.ContentLength > 0)
+                {
+                    using (var reader = new System.IO.BinaryReader(file.InputStream))
+                    {
+                        produtoTrabalho.Tamplate = reader.ReadBytes(file.ContentLength);
+                        produtoTrabalho.NomeArquivo = file.FileName;
+                    }
+                }
+
+
+
+                string nomeProduto = produtoTrabalho.Nome;
+                string nomeArquivo = produtoTrabalho.NomeArquivo;
+
+                if (db.ProdutoTrabalho.FirstOrDefault(p => p.Nome.Equals(nomeProduto)) != null)
+                {
+                    ViewBag.Mensagem = "Já existe um Produto com esse nome - Tente outro";
+                    return View(produtoTrabalho);
+                };
+
+                if (db.ProdutoTrabalho.FirstOrDefault(p => p.NomeArquivo.Equals(nomeArquivo)) != null)
+                {
+                    ViewBag.Mensagem = "Já existe um Arquivo com esse nome - Tente outro arquivo";
+                    return View(produtoTrabalho);
+                };
+
+
+
                 db.ProdutoTrabalho.Add(produtoTrabalho);
                 db.SaveChanges();
+
+
+              //  int? IdProduto = produtoTrabalho.IDProdutoTrabalho;
+              //  int? IdPratica = praticaEspecifica.IDPraticaEspecifica;
+
+              //  ProdutoTrabalhoXPraticaEspecifica praticaProd = new ProdutoTrabalhoXPraticaEspecifica()
+              //  {
+              //      IDPraticaEspecifica = IdPratica,
+              //      IDProdutoTrabalho = IdProduto
+              //  };
+
+              //  db.ProdutoTrabalhoXPraticaEspecifica.Add(praticaProd);
+
+              //  db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
             return View(produtoTrabalho);
         }
+
+
+
 
         // GET: ProdutoTrabalhoes/Edit/5
         public ActionResult Edit(int? id)
@@ -123,6 +173,24 @@ namespace FerramentaCadastroModelo.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        public void Download(int? id)
+        {
+            ProdutoTrabalho produtoTrabalho = db.ProdutoTrabalho.Find(id);
+
+
+
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + produtoTrabalho.NomeArquivo);
+
+            if (produtoTrabalho.Tamplate != null)
+
+                Response.BinaryWrite(produtoTrabalho.Tamplate.ToArray());
+
+
+
+
         }
     }
 }
