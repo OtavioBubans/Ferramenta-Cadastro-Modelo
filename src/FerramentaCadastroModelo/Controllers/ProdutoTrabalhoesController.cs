@@ -41,7 +41,7 @@ namespace FerramentaCadastroModelo.Controllers
         // GET: ProdutoTrabalhoes/Create
         public ActionResult Create()
         {
-            //   ViewBag.IDPraticaEspecifica = new SelectList(db.PraticaEspecifica, "IDPraticaEspecifica","Sigla", "Descricao");
+               ViewBag.IDPraticaEspecifica = new SelectList(db.PraticaEspecifica, "IDPraticaEspecifica","Sigla","Nome");
 
             return View();
         }
@@ -51,10 +51,9 @@ namespace FerramentaCadastroModelo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDProdutoTrabalho,Nome,NomeArquivo,Tamplate")] ProdutoTrabalho produtoTrabalho, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "IDProdutoTrabalho,Nome,NomeArquivo,Tamplate")] ProdutoTrabalho produtoTrabalho, PraticaEspecifica praticaEspecifica, HttpPostedFileBase file)
        {
-            if (ModelState.IsValid)
-            {
+            
                 if (file != null && file.ContentLength > 0)
                 {
                     using (var reader = new System.IO.BinaryReader(file.InputStream))
@@ -87,23 +86,23 @@ namespace FerramentaCadastroModelo.Controllers
                 db.SaveChanges();
 
 
-              //  int? IdProduto = produtoTrabalho.IDProdutoTrabalho;
-              //  int? IdPratica = praticaEspecifica.IDPraticaEspecifica;
+                int? IdProduto = produtoTrabalho.IDProdutoTrabalho;
+                int? IdPratica = praticaEspecifica.IDPraticaEspecifica;
 
-              //  ProdutoTrabalhoXPraticaEspecifica praticaProd = new ProdutoTrabalhoXPraticaEspecifica()
-              //  {
-              //      IDPraticaEspecifica = IdPratica,
-              //      IDProdutoTrabalho = IdProduto
-              //  };
+                ProdutoTrabalhoXPraticaEspecifica praticaProd = new ProdutoTrabalhoXPraticaEspecifica()
+                {
+                    IDPraticaEspecifica = IdPratica,
+                    IDProdutoTrabalho = IdProduto
+                };
 
-              //  db.ProdutoTrabalhoXPraticaEspecifica.Add(praticaProd);
+                db.ProdutoTrabalhoXPraticaEspecifica.Add(praticaProd);
 
-              //  db.SaveChanges();
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
-            }
+            
 
-            return View(produtoTrabalho);
+           // return View(produtoTrabalho);
         }
 
 

@@ -27,8 +27,6 @@ namespace FerramentaCadastroModelo.Controllers
 
             // OleDbConnection connection = new OleDbConnection(db.Database.Connection.ConnectionString);
 
-
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -60,29 +58,31 @@ namespace FerramentaCadastroModelo.Controllers
 
             SqlDataAdapter da1 = new SqlDataAdapter(sSQL, (db.Database.Connection.ConnectionString));
            
-
             da1.Fill(dt1);
             Ds.Tables.Add(dt1);
 
+                    sSQL = "select AreaProcesso.Nome as 'Area de Processos',  " +
+                    "Categoria.Nome as 'Categoria',  " +
+                    " NivelMaturidade.Nome as 'Nivel Maturidade', " +
+                    " MetaEspecifica.Nome as 'Meta Especifica', " +
+                    " PraticaEspecifica.Nome as 'Pratica Especifica', " +
+                    " ProdutoTrabalho.Nome as 'Produto de Trabaho' from Modelo " +
+                    "     inner join AreaProcesso " +
+                    "     on modelo.IDModelo = AreaProcesso.IDModelo " +
+                    "    left join Categoria " +
+                    "    on Categoria.IDCategoria = AreaProcesso.IDCategoria " +
+                    "    join NivelMaturidade " +
+                    "    on NivelMaturidade.IDNivelMaturidade = AreaProcesso.IDNivelMaturidade " +
+                    "     inner join MetaEspecifica " +
+                    "     on MetaEspecifica.IDAreaProcesso = AreaProcesso.IDAreaProcesso    " +
+                    " left join PraticaEspecifica " +
+                    "    on PraticaEspecifica.IDMetaEspecifica = MetaEspecifica.IDMetaEspecifica " +
+                    " left join ProdutoTrabalhoXPraticaEspecifica " +
+                    " on ProdutoTrabalhoXPraticaEspecifica.IDPraticaEspecifica = PraticaEspecifica.IDPraticaEspecifica " +
+                    "left join ProdutoTrabalho "+
+                    " on ProdutoTrabalhoXPraticaEspecifica.IDProdutoTrabalho=ProdutoTrabalho.IDProdutoTrabalho " +
+                    "Where Modelo.IDModelo = " + id;
 
-            sSQL = "select AreaProcesso.Nome as 'Area de Processos', " +
-                "Categoria.Nome as 'Categoria', " +
-                "NivelMaturidade.Nome as 'Nivel Maturidade', "+
-                "MetaEspecifica.Nome as 'Meta Especifica', "+
-                "PraticaEspecifica.Nome as 'Pratica Especifica', "+
-                "ProdutoTrabalho.Nome as 'Produto de Trabaho' from Modelo"+
-                    " left join AreaProcesso" +
-                    " on modelo.IDModelo = AreaProcesso.IDModelo" +
-                    " left join Categoria" +
-                    " on Categoria.IDCategoria = AreaProcesso.IDCategoria" +
-                    " left join NivelMaturidade" +
-                    " on NivelMaturidade.IDNivelMaturidade = AreaProcesso.IDNivelMaturidade" +
-                    " left join MetaEspecifica" +
-                    " on MetaEspecifica.IDAreaProcesso = AreaProcesso.IDAreaProcesso" +
-                    " left join PraticaEspecifica" +
-                    " on PraticaEspecifica.IDMetaEspecifica = MetaEspecifica.IDMetaEspecifica" +
-                    " left join ProdutoTrabalho" +
-                    " on ProdutoTrabalho.IDProdutoTrabalho = PraticaEspecifica.ProdutoTrabalho_IDProdutoTrabalho";
 
             SqlDataAdapter da2 = new SqlDataAdapter(sSQL, (db.Database.Connection.ConnectionString));
 
@@ -90,8 +90,92 @@ namespace FerramentaCadastroModelo.Controllers
                     Ds.Tables.Add(dt2);
 
             return View(Ds);
-           // return View(db.Modelo.OrderBy(s => s.Sigla).ToList());
         }
+
+        public ActionResult ExportarPDF(int? id)
+        {
+            string dados = "DadosCompletos/" + id;
+            return new ActionAsPdf(dados)
+            {
+
+
+                FileName = Server.MapPath("~/Content/testePDF.PDF")
+            };
+        }
+
+
+        public ActionResult PaginaVizualizacao(int? id)
+        {
+            // var studentName = db.Database.ExecuteSqlCommand("Select Modelo.Sigla as 'Sigla Modelo',Modelo.Nome as 'Nome Modelo',Modelo.Descricao as 'Descrição Modelo',metaGenerica.Sigla as 'Sigla Meta Generica',metaGenerica.Nome as 'Nome Meta Generica',metaGenerica.Descricao as 'Descrição Meta Generica',NivelCapacidade.SiglaNivelCapacidade as 'Sigla Nivel Capacidade',NivelCapacidade.Nome as 'Nome Nivel Capacidade',NivelCapacidade.Descricao as 'Descrição Nivel Capacidade'from Modelo full join metaGenerica on Modelo.IDModelo = metaGenerica.IDModelo full join NivelCapacidade on metaGenerica.IDNivelCapacidade = NivelCapacidade.IDNivelCapacidade");
+
+            // OleDbConnection connection = new OleDbConnection(db.Database.Connection.ConnectionString);
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Modelo modelo = db.Modelo.Find(id);
+
+            if (modelo == null)
+            {
+                return HttpNotFound();
+            }
+
+            DataSet Ds = new DataSet();
+            DataTable dt1 = new DataTable();
+            DataTable dt2 = new DataTable();
+            string sSQL = "Select " +
+                          "Modelo.Sigla as 'Sigla Modelo'," +
+                          "Modelo.Nome as 'Nome Modelo'," +
+                          "Modelo.Descricao as 'Descrição Modelo'," +
+                          //"metaGenerica.Sigla as 'Sigla Meta Generica'," +
+                          "metaGenerica.Nome as 'Nome Meta Generica'," +
+                          "metaGenerica.Descricao as 'Descrição Meta Generica'," +
+                          //"NivelCapacidade.SiglaNivelCapacidade as 'Sigla Nivel Capacidade'," +
+                          "NivelCapacidade.Nome as 'Nome Nivel Capacidade'," +
+                          "NivelCapacidade.Descricao as 'Descrição Nivel Capacidade'" +
+                          "from Modelo" +
+                          " left join metaGenerica on Modelo.IDModelo = metaGenerica.IDModelo" +
+                          " left join NivelCapacidade on metaGenerica.IDNivelCapacidade = NivelCapacidade.IDNivelCapacidade " +
+                           "Where Modelo.IDModelo = " + id;
+
+            SqlDataAdapter da1 = new SqlDataAdapter(sSQL, (db.Database.Connection.ConnectionString));
+
+            da1.Fill(dt1);
+            Ds.Tables.Add(dt1);
+
+            sSQL = "select AreaProcesso.Nome as 'Area de Processos',  " +
+            "Categoria.Nome as 'Categoria',  " +
+            " NivelMaturidade.Nome as 'Nivel Maturidade', " +
+            " MetaEspecifica.Nome as 'Meta Especifica', " +
+            " PraticaEspecifica.Nome as 'Pratica Especifica', " +
+            " ProdutoTrabalho.Nome as 'Produto de Trabaho' from Modelo " +
+            "     inner join AreaProcesso " +
+            "     on modelo.IDModelo = AreaProcesso.IDModelo " +
+            "    left join Categoria " +
+            "    on Categoria.IDCategoria = AreaProcesso.IDCategoria " +
+            "    join NivelMaturidade " +
+            "    on NivelMaturidade.IDNivelMaturidade = AreaProcesso.IDNivelMaturidade " +
+            "     inner join MetaEspecifica " +
+            "     on MetaEspecifica.IDAreaProcesso = AreaProcesso.IDAreaProcesso    " +
+            " left join PraticaEspecifica " +
+            "    on PraticaEspecifica.IDMetaEspecifica = MetaEspecifica.IDMetaEspecifica " +
+            " left join ProdutoTrabalhoXPraticaEspecifica " +
+            " on ProdutoTrabalhoXPraticaEspecifica.IDPraticaEspecifica = PraticaEspecifica.IDPraticaEspecifica " +
+            "left join ProdutoTrabalho " +
+            " on ProdutoTrabalhoXPraticaEspecifica.IDProdutoTrabalho=ProdutoTrabalho.IDProdutoTrabalho " +
+            "Where Modelo.IDModelo = " + id;
+
+
+            SqlDataAdapter da2 = new SqlDataAdapter(sSQL, (db.Database.Connection.ConnectionString));
+
+            da2.Fill(dt2);
+            Ds.Tables.Add(dt2);
+
+            return View(Ds);
+        }
+
+
 
         public ActionResult Index()
         {
@@ -131,7 +215,7 @@ namespace FerramentaCadastroModelo.Controllers
         {
             return View();
         }
-
+        
         public ActionResult CadastroAreaProcesso()
         {
             ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome");
@@ -180,13 +264,7 @@ namespace FerramentaCadastroModelo.Controllers
             return RedirectToAction ("Index");
         }
 
-        public ActionResult ExportarPDF()
-        {
-            return new ActionAsPdf("DadosCompletos")
-            {
-                FileName = Server.MapPath("~/Content/testePDF.PDF")
-            };
-        }
+       
 
 
 

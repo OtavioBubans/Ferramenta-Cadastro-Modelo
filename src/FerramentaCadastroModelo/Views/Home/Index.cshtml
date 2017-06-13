@@ -9,11 +9,6 @@
 @Scripts.Render("~/bundles/modernizr")
 
 
-
-
-
-
-
 <table class="table table-striped">
     <tr>
         <th>
@@ -41,7 +36,9 @@
                 @modelo.Descricao
             </td>
             <td>
-                <a href="@Url.Action("DadosCompletos", "Home", new { id = modelo.IDModelo })">Exportar para PDF</a>
+                <a href="@Url.Action("ExportarPDF", "Home", new { id = modelo.IDModelo} )">Exportar para PDF</a>
+                | 
+                <a href="@Url.Action("PaginaVizualizacao", "Home", new { id = modelo.IDModelo} )">Vizualizar Modelo</a>
             </td> 
         </tr>
     }
