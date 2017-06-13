@@ -28,7 +28,10 @@ namespace FerramentaCadastroModelo.Dominio
         [Column(TypeName = "varbinary(max)")]
         public byte[] Tamplate { get; set; }
 
-        public ICollection<PraticaEspecifica> PraticaEspecifica { get; set; }
+       // public virtual ICollection<PraticaEspecifica> PraticaEspecifica { get; set; }
+
+        public virtual ICollection<ProdutoTrabalhoXPraticaEspecifica> ProdutoTrabalhoXPraticaEspecifica { get; set; }
+
 
 
         public ProdutoTrabalho()
