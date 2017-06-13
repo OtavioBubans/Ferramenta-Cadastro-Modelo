@@ -51,6 +51,22 @@ namespace FerramentaCadastroModelo.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                string nome = modelo.Nome;
+                string sigla = modelo.Sigla;
+
+                if (db.Modelo.FirstOrDefault(x => x.Nome.Equals(nome)) != null )
+                {
+                    ViewBag.Mensagem = "Esse Nome ja existe!";
+                    return View(modelo);
+                };
+
+                if (db.Modelo.FirstOrDefault(x => x.Sigla.Equals(sigla)) != null)
+                {
+                    ViewBag.Mensagem = "Essa Sigla já existe!";
+                    return View(modelo);
+                };
+
                 db.Modelo.Add(modelo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
