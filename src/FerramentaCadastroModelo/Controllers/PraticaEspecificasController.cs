@@ -41,6 +41,8 @@ namespace FerramentaCadastroModelo.Controllers
         public ActionResult Create()
         {
             ViewBag.IDMetaEspecifica = new SelectList(db.MetaEspecifica, "IDMetaEspecifica", "Sigla");
+            ViewBag.IDProdutoTrabalho = new SelectList(db.ProdutoTrabalho, "IDProdutoTrabalho", "Nome");
+
             return View();
         }
 
@@ -49,11 +51,23 @@ namespace FerramentaCadastroModelo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDPraticaEspecifica,Sigla,Nome,Descricao,IDMetaEspecifica")] PraticaEspecifica praticaEspecifica)
+        public ActionResult Create([Bind(Include = "IDPraticaEspecifica,Sigla,Nome,Descricao,IDMetaEspecifica")] PraticaEspecifica praticaEspecifica, ProdutoTrabalho produto)
         {
             if (ModelState.IsValid)
             {
+
                 db.PraticaEspecifica.Add(praticaEspecifica);
+                db.SaveChanges();
+
+                int? IdPratica = praticaEspecifica.IDPraticaEspecifica;
+                int? IdProduto = produto.IDProdutoTrabalho;
+                ProdutoTrabalhoXPraticaEspecifica prodPratica = new ProdutoTrabalhoXPraticaEspecifica()
+                {
+                    IDPraticaEspecifica = IdPratica,
+                    IDProdutoTrabalho = IdProduto
+                };
+                db.ProdutoTrabalhoXPraticaEspecifica.Add(prodPratica);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
