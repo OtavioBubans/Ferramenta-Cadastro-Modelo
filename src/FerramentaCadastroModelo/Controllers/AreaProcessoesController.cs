@@ -87,7 +87,7 @@ namespace FerramentaCadastroModelo.Controllers
 
             ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome", areaProcesso.IDCategoria);
             ViewBag.IDModelo = new SelectList(db.Modelo, "IDModelo", "Sigla", areaProcesso.IDModelo);
-            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidDade", "Sigla", areaProcesso.IDNivelMaturidade);
+            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidade", "Sigla", areaProcesso.IDNivelMaturidade);
             return View(areaProcesso);
         }
 
@@ -105,7 +105,7 @@ namespace FerramentaCadastroModelo.Controllers
             }
             ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome", areaProcesso.IDCategoria);
             ViewBag.IDModelo = new SelectList(db.Modelo, "IDModelo", "Sigla", areaProcesso.IDModelo);
-            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidDade", "Sigla", areaProcesso.IDNivelMaturidade);
+            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidade", "Sigla", areaProcesso.IDNivelMaturidade);
             return View(areaProcesso);
         }
 
@@ -124,7 +124,7 @@ namespace FerramentaCadastroModelo.Controllers
             }
             ViewBag.IDCategoria = new SelectList(db.Categoria, "IDCategoria", "Nome", areaProcesso.IDCategoria);
             ViewBag.IDModelo = new SelectList(db.Modelo, "IDModelo", "Sigla", areaProcesso.IDModelo);
-            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidDade", "Sigla", areaProcesso.IDNivelMaturidade);
+            ViewBag.IDNivelMaturidade = new SelectList(db.NivelMaturidade, "IDNivelMaturidade", "Sigla", areaProcesso.IDNivelMaturidade);
             return View(areaProcesso);
         }
 
